@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+  api:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./note-api:/app
+    command: sh -c 'npm i && npm run start'
+    ports:
+      - "3000:3000"
+    environment: 
+      - MONGO_URL=mongodb://mongo:27017/note
+    depends_on:
+      - mongo
+
+volumes:
+  mongodb_data:

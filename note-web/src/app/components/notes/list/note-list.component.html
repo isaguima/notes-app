@@ -1,0 +1,35 @@
+<a class="btn btn-success" routerLink="/notes/new">
+  <i class="bi bi-plus"></i>
+</a>
+<div class="input-group my-3">
+  <span class="input-group-text" id="search-icon">
+    <i class="bi bi-search"></i>
+  </span>
+  <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Filter..." (keyup.enter)="search()">
+</div>
+
+<table class="table table-striped mt-4">
+  <thead>
+    <tr class="table-dark">
+      <th></th>
+      <th>Title</th>
+      <th>Content</th>
+      <th>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let note of notes">
+      <td>
+        <a [routerLink]="['/notes', note._id]" class="btn btn-warning">
+          <i class="bi bi-pencil-square"></i>
+        </a>
+      </td>
+      <td>{{ note.title }}</td>
+      <td [innerHtml]="note.content | limitHtmlCharacters"></td>
+      <td>
+        <a (click)="delete(note._id)" class="btn btn-danger"><i class="bi bi-trash"></i> </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
