@@ -1,11 +1,11 @@
 <form (submit)="save()">
   <div class="form-group">
     <label for="title">Title</label>
-    <input type="text" id="title" [(ngModel)]="title" name="title" value="{{title}}" class="form-control" />
+    <input data-cy="new-note-title-field" type="text" id="title" [(ngModel)]="title" name="title" value="{{title}}" class="form-control" />
 
   </div>
   <div class="form-group">
-    <editor id="content" name="content" initialValue="{{content}}" [init]="{
+    <editor data-cy="new-note-content-field" id="content" name="content" initialValue="{{content}}" [init]="{
         height: 400,
         menubar: false,
         plugins: [
@@ -20,7 +20,7 @@
     }" (init)="onEditorInit($event)" [(ngModel)]="content"></editor>
 
   </div>
-  <button type="submit" class="btn btn-primary btn-block">
+  <button data-cy="new-note-submit-btn" type="submit" class="btn btn-primary btn-block">
     <i class="bi bi-check"></i>
   </button>
 </form>
