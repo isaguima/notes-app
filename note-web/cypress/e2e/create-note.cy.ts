@@ -31,28 +31,54 @@ describe("Feature: Create note", () => {
       const content = `${faker.lorem.paragraph(2)}`;
 
       beforeEach(() => {
-        cy.intercept('POST', '**/notes').as('postNote');
-        cy.intercept('GET', '**/notes').as('getNote');
+        cy.intercept("POST", "**/notes").as("postNote");
+        cy.intercept("GET", "**/notes?").as("getNote");
 
-        cy.get('[data-cy="new-note-title-field"]').type(title);
-        cy.get('[data-cy="new-note-content-field"] iframe').then(iframe => {
-          const body = iframe.contents().find('body');
-          cy.wrap(body).type(content);
-        });
-        cy.get('[data-cy="new-note-submit-btn"]').click();
+        cy.get('[data-cy="new-note-title-field"]')
+          .siblings("label")
+          .should("be.visible")
+          .should("contain", "Title");
+
+        cy.get('[data-cy="new-note-title-field"]')
+          .should("be.visible")
+          .type(title, {delay: 0});
+
+        cy.get('[data-cy="new-note-content-field"] iframe')
+          .should("be.visible")
+          .then(iframe => {
+            const body = iframe.contents().find("body");
+            cy.wrap(body).type(content, {delay: 0});
+          });
+
+        cy.get('[data-cy="new-note-submit-btn"]')
+          .should("be.visible")
+          .click();
       })
 
       it("Then the app should create the note sucessfully And display the new note in the 'Notes' page", () => {
-        cy.wait('@postNote').then(post => {
-          expect(post.request.body.title).contain(title);
-          expect(post.request.body.content).contain(content);
-        })
+        cy.wait("@postNote")
+          .then(post => {
+            expect(post.request.body.title).contain(title);
+            expect(post.request.body.content).contain(content);
+          })
 
-        //cy.wait('@postNote');
-        //cy.url().should("contain", "/notes");
+        cy.wait("@getNote");
+
+        cy.get('[data-cy="notes-table-row"]')
+          .should("be.visible")
+          .should("contain", title)
+          .should("contain", content);
       })
     })
   })
 })
 
-// Quando não preencho os campos obrigatórios
+/* 
+Suggestion for improvement:
+
+Given user is on the 'New' page
+When they do not fill in the required fields 
+And click the submit button
+Then the required fields should display an error message
+And the note should not be created
+*/
