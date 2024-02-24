@@ -27,10 +27,8 @@ export class NoteListComponent implements OnInit {
     this.notes = notes;
   }
 
-
-  delete(id: string) {
-    this.noteService.deleteNote(id);
+  async delete(id: string) {
+    await this.noteService.deleteNote(id);
     this.reload();
   }
-
 }

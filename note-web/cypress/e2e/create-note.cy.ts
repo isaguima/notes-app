@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 
 describe("Feature: Create note", () => {
 
-  context("Given user is on the 'Notes' page", () => {
+  context("Given the user is on the 'Notes' page", () => {
     beforeEach(() => {
       cy.visit("/notes");
     })
@@ -20,7 +20,7 @@ describe("Feature: Create note", () => {
     })
   })
 
-  context("Given user is on the 'New' page", () => {
+  context("Given the user is on the 'New' page", () => {
     beforeEach(() => { 
       cy.deleteAllNotes();
       cy.visit("/notes/new");
@@ -67,6 +67,10 @@ describe("Feature: Create note", () => {
         cy.get('[data-cy="notes-table-row"]')
           .should("be.visible")
           .should("contain", title)
+          .should("contain", content);
+
+        cy.get('[data-cy="notes-table-row"]')
+          .should("be.visible")
           .should("contain", content);
       })
     })

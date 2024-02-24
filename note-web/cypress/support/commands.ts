@@ -21,3 +21,11 @@ Cypress.Commands.add('deleteNote', (id) => {
         url: `http://localhost:3000/notes/${id}`,
     })
 })
+
+Cypress.Commands.add('createNote', (note) => {
+    cy.request({
+        method: 'POST',
+        url: `http://localhost:3000/notes`,
+        body: note
+    })
+})

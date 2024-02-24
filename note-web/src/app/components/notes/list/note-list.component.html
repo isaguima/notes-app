@@ -28,7 +28,7 @@
       <td>{{ note.title }}</td>
       <td [innerHtml]="note.content | limitHtmlCharacters"></td>
       <td>
-        <a (click)="delete(note._id)" class="btn btn-danger"><i class="bi bi-trash"></i> </a>
+        <a data-cy="notes-table-row-delete-btn" (click)="delete(note._id)" class="btn btn-danger"><i class="bi bi-trash"></i> </a>
       </td>
     </tr>
   </tbody>
