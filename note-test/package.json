@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "cy:run": "cypress run --headless"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "cypress": "^13.6.6"
+  }
+}

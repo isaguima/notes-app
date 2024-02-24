@@ -36,10 +36,3 @@ Install dependencies: `npm install`
 Start the angular application: `npm run start`
 
 Access the app: visit http://localhost:4200/
-
-
-## Running e2e test (headless)
-
-Run the local server, as explained above
-
-Open another process and run `npm run cy:run`
