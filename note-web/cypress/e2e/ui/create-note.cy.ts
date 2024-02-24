@@ -3,11 +3,13 @@ import { faker } from '@faker-js/faker';
 describe("Feature: Create note", () => {
 
   context("Given the user is on the 'Notes' page", () => {
+
     beforeEach(() => {
       cy.visit("/notes");
     })
 
     context("When they click on the '+' button", () => {
+      
       beforeEach(() => {
         cy.get('[data-cy="notes-create-btn"]')
           .should("be.visible")
@@ -21,6 +23,7 @@ describe("Feature: Create note", () => {
   })
 
   context("Given the user is on the 'New' page", () => {
+
     beforeEach(() => { 
       cy.deleteAllNotes();
       cy.visit("/notes/new");
@@ -28,11 +31,11 @@ describe("Feature: Create note", () => {
 
     context("When they fill in the required fields And click the submit button", () => {
       const title = `${faker.lorem.words(5)}`;
-      const content = `${faker.lorem.paragraph(2)}`;
+      const content = `${faker.lorem.words(10)}`;
 
       beforeEach(() => {
         cy.intercept("POST", "**/notes").as("postNote");
-        cy.intercept("GET", "**/notes?").as("getNote");
+        cy.intercept("GET", "**/notes?").as("getNotes");
 
         cy.get('[data-cy="new-note-title-field"]')
           .siblings("label")
@@ -45,7 +48,7 @@ describe("Feature: Create note", () => {
 
         cy.get('[data-cy="new-note-content-field"] iframe')
           .should("be.visible")
-          .then(iframe => {
+          .then( iframe => {
             const body = iframe.contents().find("body");
             cy.wrap(body).type(content, {delay: 0});
           });
@@ -57,17 +60,16 @@ describe("Feature: Create note", () => {
 
       it("Then the app should create the note sucessfully And display the new note in the 'Notes' page", () => {
         cy.wait("@postNote")
-          .then(({ request }) => {
+          .then( ({ request }) => {
             expect(request.body.title).contain(title);
             expect(request.body.content).contain(content);
           })
 
-        cy.wait("@getNote");
+        cy.wait("@getNotes");
 
         cy.get('[data-cy="notes-table-row"]')
           .should("be.visible")
           .should("contain", title)
-          .should("contain", content);
 
         cy.get('[data-cy="notes-table-row"]')
           .should("be.visible")

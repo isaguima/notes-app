@@ -14,7 +14,7 @@ describe("Feature: Delete note", () => {
       }
 
       cy.createNote(note)
-        .then(response => {
+        .then( response => {
             id = response.body._id;
         })
 
@@ -22,8 +22,9 @@ describe("Feature: Delete note", () => {
     })
 
     context("When they click on the note's delete button", () => {
+
       beforeEach(() => {
-        cy.intercept("DELETE", "**/notes/**").as("deleteNote");
+        cy.intercept("DELETE", `**/notes/${id}`).as("deleteNote");
 
         cy.get('[data-cy="notes-table-row-delete-btn"]')
           .should("be.visible")

@@ -29,20 +29,17 @@ The application will be available at `http://localhost:4200`.
 
 ## Local server
 
+Move to note-web: `cd note-web`
+
 Install dependencies: `npm install`
 
-Run `npm run start` for a dev server.
+Start the angular application: `npm run start`
 
-Navigate to `http://localhost:4200/`. 
+Access the app: visit http://localhost:4200/
 
 
-## Running e2e (background)
+## Running e2e test (headless)
 
-Run `npm start` (keep this process running)
+Run the local server, as explained above
 
 Open another process and run `npm run cy:run`
-
-## Running e2e (headed)
-
-Run `npm run cy:debug`
-
