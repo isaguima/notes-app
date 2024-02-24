@@ -1,5 +1,21 @@
 /// <reference types="cypress" />
 
+const API_URL = "http://localhost:3000/notes";
+
+Cypress.Commands.add('getNotes', () => {
+    return cy.request({
+        method: 'GET',
+        url: API_URL,
+    })
+})
+
+Cypress.Commands.add('deleteNote', (id) => {
+    cy.request({
+        method: 'DELETE',
+        url: `${API_URL}/${id}`,
+    })
+})
+
 Cypress.Commands.add('deleteAllNotes', () => {
     cy.getNotes().then( response => {
         response.body.forEach((note) => {
@@ -8,24 +24,10 @@ Cypress.Commands.add('deleteAllNotes', () => {
     })
 })
 
-Cypress.Commands.add('getNotes', () => {
-    return cy.request({
-        method: 'GET',
-        url: 'http://localhost:3000/notes',
-    })
-})
-
-Cypress.Commands.add('deleteNote', (id) => {
-    cy.request({
-        method: 'DELETE',
-        url: `http://localhost:3000/notes/${id}`,
-    })
-})
-
 Cypress.Commands.add('createNote', (note) => {
     cy.request({
         method: 'POST',
-        url: `http://localhost:3000/notes`,
+        url: API_URL,
         body: note
     })
 })

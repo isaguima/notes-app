@@ -1,11 +1,13 @@
-import { NumberSymbol } from '@angular/common'
 import './commands'
+
+type Note = { title: string, content: string };
+type APINote = Note & { _id: string, __v: string };
 
 declare global {
    namespace Cypress {
       interface Chainable {
-         getNotes(): Chainable < Cypress.Response<Array<{_id: string, title: string, content: string, __v: number}>>>
-         createNote(note: {title: string, content: string}): Chainable < Cypress.Response<{_id: string, title: string, content: string, __v: number} >>
+         getNotes(): Chainable < Cypress.Response< Array< APINote > >>
+         createNote(note: Note): Chainable < Cypress.Response< APINote >>
          deleteNote(id: string): Chainable < void >
          deleteAllNotes(): Chainable < void >
       }

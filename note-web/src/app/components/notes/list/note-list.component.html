@@ -21,7 +21,7 @@
   <tbody>
     <tr *ngFor="let note of notes" data-cy="notes-table-row">
       <td>
-        <a [routerLink]="['/notes', note._id]" class="btn btn-warning">
+        <a data-cy="notes-table-row-update-btn" [routerLink]="['/notes', note._id]" class="btn btn-warning">
           <i class="bi bi-pencil-square"></i>
         </a>
       </td>

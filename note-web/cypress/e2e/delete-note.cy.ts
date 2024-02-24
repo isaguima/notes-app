@@ -1,9 +1,10 @@
 import { faker } from '@faker-js/faker';
-let id = "";
 
 describe("Feature: Delete note", () => {
-
+  
   context("Given the user is on the 'Notes' page And there is a note in the table", () => {
+    let id = "";
+    
     beforeEach(() => {
       cy.deleteAllNotes();
 
@@ -26,13 +27,13 @@ describe("Feature: Delete note", () => {
 
         cy.get('[data-cy="notes-table-row-delete-btn"]')
           .should("be.visible")
-          .trigger("click");
+          .click();
       })
 
       it("Then the app should delete the note from the table", () => {
         cy.wait("@deleteNote")
-          .then( request => {
-            expect(request.request.url).to.contain(id);
+          .then( ({ request }) => {
+            expect(request.url).to.contain(id);
           })
         
         cy.get('[data-cy="notes-table-row"]')

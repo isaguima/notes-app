@@ -57,9 +57,9 @@ describe("Feature: Create note", () => {
 
       it("Then the app should create the note sucessfully And display the new note in the 'Notes' page", () => {
         cy.wait("@postNote")
-          .then(post => {
-            expect(post.request.body.title).contain(title);
-            expect(post.request.body.content).contain(content);
+          .then(({ request }) => {
+            expect(request.body.title).contain(title);
+            expect(request.body.content).contain(content);
           })
 
         cy.wait("@getNote");
@@ -79,6 +79,7 @@ describe("Feature: Create note", () => {
 
 /* 
 Suggestion for improvement:
+We could test this way if fields implemented a "required" validation.
 
 Given user is on the 'New' page
 When they do not fill in the required fields 
