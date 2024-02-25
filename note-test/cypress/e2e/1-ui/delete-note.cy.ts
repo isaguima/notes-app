@@ -15,8 +15,8 @@ describe("Feature: Delete note", () => {
 
       cy.postNote(note)
         .then( response => {
-            id = response.body._id;
-        })
+          id = response.body._id;
+        });
 
       cy.visit("/notes");
     })
@@ -35,7 +35,7 @@ describe("Feature: Delete note", () => {
         cy.wait("@deleteNote")
           .then( ({ request }) => {
             expect(request.url).to.contain(id);
-          })
+          });
         
         cy.get('[data-cy="notes-table-row"]')
           .should("not.exist");

@@ -34,6 +34,7 @@ Cypress.Commands.add('deleteAllNotes', () => {
 
 Cypress.Commands.add('postNote', (note) => {
     cy.request({
+        failOnStatusCode: false,
         method: 'POST',
         url: API_URL,
         body: note

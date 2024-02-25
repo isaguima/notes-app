@@ -1,7 +1,6 @@
 import { faker } from '@faker-js/faker';
 
 describe("Feature: Update note", () => {
-
   let id = "";
     
   const note = {
@@ -14,8 +13,8 @@ describe("Feature: Update note", () => {
 
     cy.postNote(note)
       .then( response => {
-          id = response.body._id;
-      })
+        id = response.body._id;
+      });
   })
 
   context("Given the user is on the 'Notes' page And there is a note in the table", () => {
@@ -45,7 +44,7 @@ describe("Feature: Update note", () => {
           .then( iframe => {
             const body = iframe.contents().find("body");
             cy.wrap(body).should("contain", note.content);
-          })
+          });
       })
     })
   })
@@ -83,18 +82,18 @@ describe("Feature: Update note", () => {
           .click();
       })
 
-      it("Then the app should update the note and display the updated note on the 'Notes' page", () => {
+      it("Then the app should update the note And display the updated note on the 'Notes' page", () => {
         cy.wait("@putNote")
           .then( ({ request }) => {
             expect(request.body.title).contain(newTitle);
             expect(request.body.content).contain(newContent);
-          })
+          });
 
           cy.wait("@getNotes");
 
           cy.get('[data-cy="notes-table-row"]')
             .should("be.visible")
-            .should("contain", newTitle)
+            .should("contain", newTitle);
   
           cy.get('[data-cy="notes-table-row"]')
             .should("be.visible")

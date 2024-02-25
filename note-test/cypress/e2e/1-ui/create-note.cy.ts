@@ -13,7 +13,7 @@ describe("Feature: Create note", () => {
       beforeEach(() => {
         cy.get('[data-cy="notes-create-btn"]')
           .should("be.visible")
-          .click()
+          .click();
       })
 
       it("Then it should navigate to the 'New' page", () => {
@@ -63,13 +63,13 @@ describe("Feature: Create note", () => {
           .then( ({ request }) => {
             expect(request.body.title).contain(title);
             expect(request.body.content).contain(content);
-          })
+          });
 
         cy.wait("@getNotes");
 
         cy.get('[data-cy="notes-table-row"]')
           .should("be.visible")
-          .should("contain", title)
+          .should("contain", title);
 
         cy.get('[data-cy="notes-table-row"]')
           .should("be.visible")

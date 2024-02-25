@@ -1,7 +1,7 @@
 import './commands'
 import 'cypress-plugin-api'
 
-type Note = { title: string, content: string };
+type Note = { title: string, content: string};
 type APINote = Note & { _id: string, __v: string, error: string };
 
 declare global {
