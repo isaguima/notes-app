@@ -3,9 +3,16 @@
 const API_URL = "http://localhost:3000/notes";
 
 Cypress.Commands.add('getNotes', () => {
-    return cy.request({
+    return cy.api({
         method: 'GET',
         url: API_URL,
+    })
+})
+
+Cypress.Commands.add('getNoteById', (id) => {
+    return cy.api({
+        method: 'GET',
+        url: `${API_URL}/${id}`,
     })
 })
 
