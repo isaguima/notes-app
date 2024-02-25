@@ -17,7 +17,8 @@ Cypress.Commands.add('getNoteById', (id) => {
 })
 
 Cypress.Commands.add('deleteNote', (id) => {
-    cy.request({
+    return cy.api({
+        failOnStatusCode: false,
         method: 'DELETE',
         url: `${API_URL}/${id}`,
     })

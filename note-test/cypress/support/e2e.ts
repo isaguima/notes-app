@@ -10,7 +10,7 @@ declare global {
          getNotes(): Chainable < Cypress.Response< Array< APINote > > >
          getNoteById(id: string): Chainable < Cypress.Response< APINote > >
          createNote(note: Note): Chainable < Cypress.Response< APINote > >
-         deleteNote(id: string): Chainable < void >
+         deleteNote(id: string): Chainable < Cypress.Response< { error: string } > >
          deleteAllNotes(): Chainable < void >
       }
    }
