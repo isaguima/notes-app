@@ -11,9 +11,9 @@ describe("Feature: Delete note", () => {
       const note = {
         title: `${faker.lorem.words(5)}`,
         content: `${faker.lorem.paragraph(2)}`
-      }
+      };
 
-      cy.createNote(note)
+      cy.postNote(note)
         .then( response => {
             id = response.body._id;
         })

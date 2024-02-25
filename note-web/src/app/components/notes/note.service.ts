@@ -24,7 +24,7 @@ export class NoteService {
     return response.data;
   }
 
-  public async createNote(title: string, content: string) {
+  public async postNote(title: string, content: string) {
     const response = await axios.post(this.apiUrl, { title, content });
     return response.data;
   }

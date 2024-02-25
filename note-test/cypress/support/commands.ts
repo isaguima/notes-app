@@ -32,10 +32,19 @@ Cypress.Commands.add('deleteAllNotes', () => {
     })
 })
 
-Cypress.Commands.add('createNote', (note) => {
+Cypress.Commands.add('postNote', (note) => {
     cy.request({
         method: 'POST',
         url: API_URL,
+        body: note
+    })
+})
+
+Cypress.Commands.add('putNote', (id, note) => {
+    return cy.api({
+        failOnStatusCode: false,
+        method: 'PUT',
+        url: `${API_URL}/${id}`,
         body: note
     })
 })

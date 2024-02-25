@@ -53,7 +53,7 @@ export class NoteFormComponent {
       const note = await this.noteService.updateNote(this.id, this.title, this.content)
       this.id = note._id;
     } else {
-      const note = await this.noteService.createNote(this.title, this.content);
+      const note = await this.noteService.postNote(this.title, this.content);
       this.id = note._id;
     }
     this.router.navigate(['/notes']);

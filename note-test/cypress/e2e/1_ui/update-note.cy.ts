@@ -7,12 +7,12 @@ describe("Feature: Update note", () => {
   const note = {
       title: `${faker.lorem.words(5)}`,
       content: `${faker.lorem.words(10)}`
-  }
+  };
 
   beforeEach(() => {
     cy.deleteAllNotes();
 
-    cy.createNote(note)
+    cy.postNote(note)
       .then( response => {
           id = response.body._id;
       })
