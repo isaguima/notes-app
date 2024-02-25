@@ -48,4 +48,10 @@ View the app in your browser by navigating to http://localhost:4200/
 ## Contributing
 Contributions to improve the functionality or fix any issues with the app are welcome. Feel free to open an issue or submit a pull request.
 
+## Run tests
 
+While running the app, open another terminal and move to the 'note-test' directory: `cd note-test`
+
+Install dependencies: `npm install`
+
+Run the tests: `npm run cy:run`
