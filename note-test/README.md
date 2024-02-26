@@ -18,4 +18,7 @@ Open another terminal, move to the 'note-test' directory: `cd note-test`
 
 Install dependencies: `npm install`
 
-Run the tests: `npm run cy:run`
+Run the tests:
+
+- In your browser: `npx cypress open`
+- In your terminal: `npm run cy:run`
